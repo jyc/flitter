@@ -32,7 +32,6 @@ Set up opam and install OCaml dependencies:
 ```bash
 $ opam init
 $ opam switch 4.07.0
-$ opam install dune core lwt re color sexp_pretty
 ```
 
 ### Python Dependencies
@@ -56,9 +55,34 @@ $ pip3 install --user pynput
 ```bash
 $ git clone --recursive https://github.com/alexozer/flitter.git
 $ cd flitter
-$ dune build
-$ dune install
+$ opam pin add . --kind=path
 ```
+
+TODO
+
+This fails with
+
+```
+#=== ERROR while compiling flitter.0.1 ========================================#
+# context     2.0.5 | macos/x86_64 | ocaml-base-compiler.4.09.0 | pinned(file:///Users/jyc/projects/flitter)
+# path        ~/.opam/default/.opam-switch/build/flitter.0.1
+# command     ~/.opam/opam-init/hooks/sandbox.sh build dune build -p flitter -j 15
+# exit-code   1
+# env-file    ~/.opam/log/flitter-3065-2f8173.env
+# output-file ~/.opam/log/flitter-3065-2f8173.out
+### output ###
+# File "src/dune", line 4, characters 27-32:
+# 4 |   (libraries core lwt.unix notty notty.unix re color sexp_pretty)
+#                                ^^^^^
+# Error: Library "notty" not found.
+# Hint: try: dune external-lib-deps --missing -p flitter -j 15 @@default
+```
+
+Weirdly, in `~/.opam/default/.opam-switch/build/flitter.0.1`, I see notty
+vendored correctly. I will need to study dune more. 
+
+`dune build` itself fails on the error the user ran into. I think it is a
+question of the libraries having changed in a backwards-incompatible way.
 
 ## Usage
 

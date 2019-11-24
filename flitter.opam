@@ -15,9 +15,12 @@ depends: [
   "color"
   "core"
   "lwt"
+  "lwt_ppx"
   "ocaml"
   "re"
   "sexp_pretty"
+  "uuseg"
+  "uutf"
 
   "dune" {build}
 ]
