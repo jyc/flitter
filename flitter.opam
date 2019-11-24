@@ -1,0 +1,24 @@
+opam-version: "2.0"
+name: "flitter"
+version: "0.1"
+synopsis: "Split timer for the command line"
+description: """
+A Livesplit-inspired speedrunning split timer for terminal / command-line. Supports global hotkeys.
+"""
+maintainer: "Alex Ozer <thealexozer@gmail.com>"
+authors: "Alex Ozer <thealexozer@gmail.com>"
+license: "MIT"
+homepage: "https://github.com/alexozer/flitter"
+bug-reports: "https://github.com/alexozer/flitter/issues"
+dev-repo: "git://git@github.com:alexozer/flitter.git"
+depends: [
+  "color"
+  "core"
+  "lwt"
+  "ocaml"
+  "re"
+  "sexp_pretty"
+
+  "dune" {build}
+]
+build: ["dune" "build" "-p" name "-j" jobs]
